@@ -2,10 +2,6 @@ name: CI
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to checkout'
-        required: true
   push:
     branches:
       - main
@@ -15,14 +11,6 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-22.04
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event.inputs.branch || github.events.pull_request.merge_commit_sha }}
-
-  ci-pr:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout repository
