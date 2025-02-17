@@ -20,4 +20,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.inputs.branch || $GITHUB_SHA }}
+        ref: ${{ github.event.inputs.branch || github.events.pull_request.merge_commit_sha }}
+
+  ci-pr:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
